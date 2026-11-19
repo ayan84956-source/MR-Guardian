@@ -1,0 +1,21 @@
+Definition:
+MR Guardian is an AI-powered GitLab merge request review system designed to automate code review by analyzing changed files and identifying potential bugs, security issues, and quality problems before code is merged.
+
+Objective:
+The main objective of MR Guardian is to reduce manual review effort and improve code quality by combining AI-based analysis with static code scanning. It helps developers catch issues early, especially in new or modified lines, without relying only on manual inspection.
+
+Implementation / Flow:
+The system works by connecting to GitLab, fetching the merge request details and changed files, and reading the updated source code. It then sends the file content to an AI model (configured to use Ollama by default) for review. In parallel, it runs static analyzers such as Ruff and Bandit to detect lint and security issues. The findings from both sources are merged, filtered to focus on changed lines, and then posted back to GitLab as inline comments or a summary note. This creates an automated review workflow that is integrated directly into the merge request process.
+
+Tools / Tech Stack:
+- Python
+- FastAPI
+- Uvicorn
+- Pydantic / pydantic-settings
+- httpx
+- Ollama for AI model integration
+- Ruff for linting
+- Bandit for security scanning
+- GitLab API for merge request and repository access
+- Cloudflare tunnel for exposing local services externally
+- dotenv for environment configuration
